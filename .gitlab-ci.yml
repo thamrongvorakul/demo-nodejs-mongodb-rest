@@ -1,0 +1,22 @@
+image: docker:latest
+services:
+  - docker:dind
+
+stages:
+  - build
+  - deploy # dummy stage to follow the template guidelines
+
+build:
+  stage: build
+  image: docker:stable
+  variables:
+    DOCKER_TLS_CERTDIR: ""
+  services:
+    - docker:stable-dind
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker build -t $CI_REGISTRY/$CI_PROJECT_DIR:$CI_DEFAULT_BRANCH . 
+    - docker push $CI_REGISTRY/$CI_PROJECT_DIR
+  only:
+    - branches
+    - tags
