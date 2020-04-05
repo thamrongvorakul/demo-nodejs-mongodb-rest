@@ -1,6 +1,4 @@
-image: docker:latest
-services:
-  - docker:dind
+image: registry.gitlab.com/thamrongvorakul/custom_devops:master
 
 stages:
   - build
@@ -28,9 +26,8 @@ build:
 
 deploy:
   stage: deploy
-  image: registry.gitlab.com/thamrongvorakul/custom_devops:master
   before_script:
-    - echo $CI_REGISTRY_USER $CI_REGISTRY_PASSWORD $CI_REGISTRY/thamrongvorakul/demo-nodejs-mongodb-rest
+    - echo $CI_REGISTRY_USER $CI_REGISTRY_PASSWORD $CI_REGISTRY
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - echo 'starting script'
