@@ -28,10 +28,13 @@ build:
 
 deploy:
   stage: deploy
-  image: lexauw/ansible-alpine:v2.8.7
+  image: registry.gitlab.com/thamrongvorakul/custom_devops:master
+  before_script:
+    - echo $CI_REGISTRY_USER $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - 'ansible-playbook -i inventory.yml deploy.yml --extra-vars "IMAGE_REPOSITORY=${CI_APPLICATION_REPOSITORY:-$CI_REGISTRY_IMAGE}:${CI_APPLICATION_TAG:-$CI_COMMIT_TAG}"'
+    - echo $CI_APPLICATION_REPOSITORY:$CI_COMMIT_SHA
+    - 'ansible-playbook -i inventory.yml deploy.yml --extra-vars "IMAGE_REPOSITORY=$CI_APPLICATION_REPOSITORY:$CI_COMMIT_SHA"'
   when: manual # I just set it with manual because it is not a good practice if we deploy everytime when code has changed.
   needs: ["build"]
   only:
