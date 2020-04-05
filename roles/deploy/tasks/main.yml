@@ -1,10 +1,3 @@
-- name: docker login 
-  docker_login:
-    registry: "{{ REGISTRY }}"
-    username: "{{ DEPLOY_TOKEN }}"
-    password: "{{ DEPLOY_PASS }}"
-    reauthorize: yes
-
 - name: down existing docker process
   command: docker-compose down
   args:
