@@ -28,8 +28,7 @@ build:
 
 deploy:
   stage: deploy
-  image:
-  name: registry.gitlab.com/ekocommunications/engineering/devops/ekoterransible:0.5.8
+  image: ansible/ansible
   entrypoint:
     - '/usr/bin/env'
     - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
