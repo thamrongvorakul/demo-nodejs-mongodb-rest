@@ -25,4 +25,3 @@ build:
     - /build/build.sh
   only:
     - branches
-    - tags
