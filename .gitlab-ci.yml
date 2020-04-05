@@ -1,9 +1,9 @@
 image:
-  name: registry.gitlab.com/ekocommunications/engineering/devops/ekoterransible:0.5.8
+  name: registry.gitlab.com/thamrongvorakul/custom_devops:master
   entrypoint:
     - '/usr/bin/env'
     - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
-    
+
 stages:
   - build
   - deploy # dummy stage to follow the template guidelines
