@@ -1,6 +1,6 @@
 - name: docker login ecr using user-provided command
-  shell: "{{ DOCKER_LOGIN }}"
-  
+  command: "{{ DOCKER_LOGIN }}"
+
 - name: down existing docker process
   command: docker-compose down
   args:
