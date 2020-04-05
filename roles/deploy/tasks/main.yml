@@ -1,4 +1,4 @@
-- name: docker login ecr using user-provided command
+- name: docker login 
   command: "{{ DOCKER_LOGIN }}"
 
 - name: down existing docker process
