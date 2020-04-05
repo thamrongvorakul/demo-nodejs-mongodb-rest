@@ -30,9 +30,6 @@ build:
 
 deploy:
   stage: deploy
-  before_script:
-    - echo $CI_REGISTRY_USER $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
   script:
     - echo 'starting script'
     - echo $CI_APPLICATION_REPOSITORY:$CI_COMMIT_SHA
