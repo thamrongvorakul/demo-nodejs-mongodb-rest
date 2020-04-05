@@ -25,3 +25,18 @@ build:
     - /build/build.sh
   only:
     - branches
+
+deploy:
+  stage: deploy
+  image:
+  name: registry.gitlab.com/ekocommunications/engineering/devops/ekoterransible:0.5.8
+  entrypoint:
+    - '/usr/bin/env'
+    - 'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - 'ansible-playbook -i inventory.yml deploy.yml --extra-vars "IMAGE_REPOSITORY=${CI_APPLICATION_REPOSITORY:-$CI_REGISTRY_IMAGE}:${CI_APPLICATION_TAG:-$CI_COMMIT_TAG}"'
+  when: manual # I just set it with manual because it is not a good practice if we deploy everytime when code has changed.
+  needs: ["build"]
+  only:
+    - branches
