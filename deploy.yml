@@ -4,3 +4,4 @@
     - role: deploy
   vars:
     IMAGE_REPOSITORY: "{{ IMAGE_REPOSITORY }}"
+    DOCKER_LOGIN: "{{ DOCKER_LOGIN }}"
