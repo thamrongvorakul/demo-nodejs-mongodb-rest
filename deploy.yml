@@ -1,0 +1,6 @@
+
+- hosts: app
+  roles:
+    - role: deploy
+  vars:
+    - IMAGE_REPOSITORY: "{{ IMAGE_REPOSITORY }}"

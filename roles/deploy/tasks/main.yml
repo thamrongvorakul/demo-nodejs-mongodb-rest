@@ -1,0 +1,24 @@
+- name: down existing docker process
+  command: docker-compose down
+  args:
+    chdir: "{{ app_dir }}"
+
+- name: remove docker-compose.yml
+  file:
+    state: absent
+    path: "{{ app_dir }}/docker-compose.yml"
+
+- name: copy new docker-compose.ym,l
+  template:
+    src: "docker-compose.yml.j2"
+    dest: "{{ app_dir }}/docker-compose.yml"
+
+- name: pull docker image
+  command: docker-compose pull
+  args:
+    chdir: "{{ app_dir }}"
+
+- name: recreate containers
+  command: docker-compose up -d
+  args:
+    chdir: "{{ app_dir }}"
