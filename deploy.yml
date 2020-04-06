@@ -4,6 +4,3 @@
     - role: deploy
   vars:
     - IMAGE_REPOSITORY: "{{ IMAGE_REPOSITORY }}"
-    - DEPLOY_TOKEN: "{{ DEPLOY_TOKEN }}"
-    - DEPLOY_PASS: "{{ DEPLOY_PASS }}"
-    - REGISTRY: "{{ REGISTRY }}"
