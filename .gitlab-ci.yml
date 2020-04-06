@@ -32,6 +32,7 @@ deploy:
   stage: deploy
   before_script:
     - echo -e "$SERVER_KEY" > /tmp/server.pem
+    - chmod 600 /tmp/server.pem
   script:
     - echo 'starting script'
     - echo $CI_APPLICATION_REPOSITORY:$CI_COMMIT_SHA
