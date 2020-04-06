@@ -33,7 +33,7 @@ deploy:
   script:
     - echo 'starting script'
     - echo $CI_APPLICATION_REPOSITORY:$CI_COMMIT_SHA
-    - 'ansible-playbook -i inventory.yml deploy.yml --extra-vars "IMAGE_REPOSITORY=$CI_APPLICATION_REPOSITORY:$CI_COMMIT_SHA DEPLOY_TOKEN=$DEPLOY_TOKEN DEPLOY_PASS=$DEPLOY_PASS REGISTRY=$CI_REGISTRY"'
+    - 'ansible-playbook -i inventory deploy.yml --extra-vars "IMAGE_REPOSITORY=$CI_APPLICATION_REPOSITORY:$CI_COMMIT_SHA DEPLOY_TOKEN=$DEPLOY_TOKEN DEPLOY_PASS=$DEPLOY_PASS REGISTRY=$CI_REGISTRY"'
   when: manual # I just set it with manual because it is not a good practice if we deploy everytime when code has changed.
   needs: ["build"]
   only:
